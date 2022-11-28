@@ -1,6 +1,7 @@
 package com.example.greeting;
 
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,15 @@ public class GreetingService {
 	@Autowired
 	private GreetingSearch repository;
 	
-	public String getGreeting(int id) {
-		Map<String, Object> map = repository.findById(id);
+	Random random = new Random();
+	
+	public String getGreeting(int exclusionId) {
+		
+		int randomId = getRandomId(exclusionId);
+		Map<String, Object> map = repository.findById(randomId);
 		
 		Greeting greeting = new Greeting();
-		greeting.setGreetingId(id);
+		greeting.setGreetingId(randomId);
 		greeting.setGreeting((String)map.get("greeting"));
 		greeting.setImagePath((String)map.get("imagePath"));
 		
@@ -33,7 +38,17 @@ public class GreetingService {
 
 		}
 		log.info(greetingJson);
+		
 		return greetingJson;
+	}
+	
+	private int getRandomId(int exclusionId) {
+		int randomId = exclusionId;
+		while(randomId == exclusionId) {
+			randomId = random.nextInt(3)+1;
+		}
+		
+		return randomId;
 	}
 	
 }

@@ -3,9 +3,9 @@ package com.example.greeting;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,8 +18,8 @@ public class GreetingRestController{
 	Random random = new Random();
 	
 	@PostMapping("/search")
-	public String PostDbRequest(Model model) {
-		String greeting = service.getGreeting(random.nextInt(3)+1);
+	public String PostDbRequest(@RequestParam(name="id", defaultValue = "0") int exclusionId) {
+		String greeting = service.getGreeting(exclusionId);
 		
 		return greeting;
 	}

@@ -6,17 +6,18 @@ jQuery(function($){
 });
 
 function getGreeting() {
-
-  var formData = $('#user-detail-form').serializeArray();
-
+	
   $.ajax({
     type : "POST",
     cache : false,
     url : '/greeting/search',
-    data: '',
+    data: {
+	  'id':document.getElementById('greetingId').innerHTML
+	},
     dataType : 'text',
   }).done(function(data) {
 	console.log(data);
+	document.getElementById('greetingId').innerHTML = JSON.parse(data).greetingId
     document.getElementById('greeting').innerHTML = JSON.parse(data).greeting
     document.getElementById('greetingImage').src = JSON.parse(data).imagePath
   }).fail(function(jqXHR, textStatus, errorThrown){
