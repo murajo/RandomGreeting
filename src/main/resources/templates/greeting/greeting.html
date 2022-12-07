@@ -8,13 +8,15 @@
 </head>
 <body>
   <div layout:fragment="content">
-    <h1>☆三種の挨拶☆</h1>
-    <p>ボタンをクリックするたびに三種類の挨拶から一つ出力されるぞ！</p>
-    <button id="btn-search" type="button">挨拶</button>
+    <h1 th:text="#{greeting.heading1}"></h1>
+    <p th:text="#{greeting.description}"></p>
+    <button id="btn-search" type="button" th:text="#{greeting.button}"></button>
     <br>
-    <p>挨拶：<span id="greeting">上のボタンを押してね</span></p>
+    <span th:text="#{greeting.item}">
+    </span><span id="greeting" th:text="#{greeting.instructions}"></span>
+    <br>
     <img id="greetingImage" width="256" height="256" src="http://urx3.nu/Zlxt">
-    <p hidden id=greetingId>0</p>
+    <p hidden id=greetingId th:text="#{greeting.defaultId}"></p>
   </div>
 </body>
 </html>
