@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("greeting")
-public class GreetingRestController{
+public class GreetingRestController {
 
 	@Autowired
 	private GreetingService service;
-	
+
 	Random random = new Random();
-	
+
 	@PostMapping("/search")
-	public String PostDbRequest(@RequestParam(name="id", defaultValue = "0") int exclusionId) {
+	public String PostDbRequest(@RequestParam(name = "id", defaultValue = "0") int exclusionId) {
 		String greeting = service.getGreeting(exclusionId);
-		
+
 		return greeting;
 	}
-	
+
 }

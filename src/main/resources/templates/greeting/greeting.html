@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout/layout}">
+
 <head>
   <title>RandomGreeting</title>
   <script th:src="@{/js/greeting/greeting.js}" defer></script>
 </head>
+
 <body>
   <div layout:fragment="content">
     <h1 th:text="#{greeting.heading1}"></h1>
     <p th:text="#{greeting.description}"></p>
     <button id="btn-search" type="button" th:text="#{greeting.button}"></button>
     <br>
-    <span th:text="#{greeting.item}">
-    </span><span id="greeting" th:text="#{greeting.instructions}"></span>
+    <span th:text="#{greeting.item}"></span>
+    <span id="greeting" th:text="#{greeting.instructions}"></span>
     <br>
     <img id="greetingImage" width="256" height="256" src="http://urx3.nu/Zlxt">
     <p hidden id=greetingId th:text="#{greeting.defaultId}"></p>
   </div>
 </body>
+
 </html>

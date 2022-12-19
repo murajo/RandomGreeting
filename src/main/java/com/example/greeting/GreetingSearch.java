@@ -8,19 +8,19 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class GreetingSearch {
-	
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
-	public Map<String, Object> findById(int id){
-		
+
+	public Map<String, Object> findById(int id) {
+
 		String query = "SELECT * FROM greetings WHERE id = ?";
 		Map<String, Object> greeting = jdbcTemplate.queryForMap(query, id);
 		return greeting;
 	}
 
-	public int getGreetingQuantity(){
-		
+	public int getGreetingQuantity() {
+
 		String query = "SELECT COUNT(id) FROM greetings";
 		int greetingQuantity = jdbcTemplate.queryForObject(query, Integer.class);
 
