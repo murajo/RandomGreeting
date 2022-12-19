@@ -35,7 +35,7 @@ public class GreetingService {
 		try {
 			greetingJson = objectMapper.writeValueAsString(greeting);
 		} catch (JsonProcessingException e) {
-
+			e.printStackTrace();
 		}
 		log.info(greetingJson);
 		
@@ -44,8 +44,9 @@ public class GreetingService {
 	
 	private int getRandomId(int exclusionId) {
 		int randomId = exclusionId;
+		int greetingQuantity = repository.getGreetingQuantity();
 		while(randomId == exclusionId) {
-			randomId = random.nextInt(3)+1;
+			randomId = random.nextInt(greetingQuantity)+1;
 		}
 		
 		return randomId;

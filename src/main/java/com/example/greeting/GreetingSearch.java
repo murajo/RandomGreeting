@@ -19,4 +19,12 @@ public class GreetingSearch {
 		return greeting;
 	}
 
+	public int getGreetingQuantity(){
+		
+		String query = "SELECT COUNT(id) FROM greetings";
+		int greetingQuantity = jdbcTemplate.queryForObject(query, Integer.class);
+
+		return greetingQuantity;
+	}
+
 }
